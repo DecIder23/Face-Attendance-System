@@ -1,4 +1,4 @@
-Markdown# 🚀 **Smart Attendance — Face Recognition + SMS Notifications**
+ **Smart Attendance — Face Recognition + SMS Notifications**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D14-brightgreen.svg)](#)
