@@ -1,0 +1,203 @@
+/* Class Selection */
+.class-selection {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(1, 41, 112, 0.1);
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.select-group label {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.select-group select,
+.select-group input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Scanner Section */
+.scanner-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(1, 41, 112, 0.1);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scanner-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--success-color);
+}
+
+.scanner-status i {
+    font-size: 24px;
+}
+
+.last-scanned {
+    text-align: right;
+}
+
+.last-scanned h3 {
+    color: var(--text-color);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.last-scanned p {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Attendance List */
+.attendance-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(1, 41, 112, 0.1);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-header h2 {
+    color: var(--primary-color);
+}
+
+.list-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.action-btn:not(.primary) {
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.action-btn.primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.action-btn.primary:hover {
+    background-color: var(--primary-color);
+}
+
+/* Attendance Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status-present {
+    background-color: #e8f7ed;
+    color: #2da44e;
+}
+
+.status-absent {
+    background-color: #ffebe9;
+    color: #cf222e;
+}
+
+.toggle-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.toggle-present {
+    background-color: #e8f7ed;
+    color: #2da44e;
+}
+
+.toggle-absent {
+    background-color: #ffebe9;
+    color: #cf222e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .class-selection {
+        grid-template-columns: 1fr;
+    }
+
+    .scanner-section {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .last-scanned {
+        text-align: center;
+    }
+
+    .list-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .list-actions {
+        justify-content: center;
+    }
+}

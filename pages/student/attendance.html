@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Attendance - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/student-main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="aurora-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>AFD System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="active"><a href="attendance.html"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header>
+                <h1>My Attendance</h1>
+            </header>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Overall Attendance</h3>
+                    <p id="overallAttendance">0%</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Present Days</h3>
+                    <p id="presentDays">0</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>Absent Days</h3>
+                    <p id="absentDays">0</p>
+                </div>
+            </div>
+            <!-- Subjects Grid -->
+            <div class="content-card subjects-grid" id="subjectsGrid"></div>
+
+            <!-- Attendance Table (shown after subject click) -->
+            <div class="content-card attendance-table" id="attendanceTableContainer" style="display:none;">
+                <h2 id="attendanceTableTitle">Attendance Record</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                            <th>Marked By</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTable">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/attendance.js"></script>
+</body>
+</html>

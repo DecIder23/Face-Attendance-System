@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/student-main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="aurora-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>AFD System</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="#" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Student Dashboard</h1>
+                <div style="margin-top: 8px; font-size: 1.1em; color: #333;">
+                    Welcome, <span id="studentName"></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Attendance Rate</h3>
+                    <p id="attendanceRate">85%</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-book"></i>
+                    <h3>Total Subjects</h3>
+                    <p id="totalSubjects">6</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Today's Classes</h3>
+                    <p id="todayClasses">4</p>
+                </div>
+            </div>
+
+            <!-- Recent Attendance -->
+            <div class="recent-attendance">
+                <h2>Recent Attendance</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTable">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Cameras - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/camera.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html" class="active"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li><a href="#" id="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Cameras Section -->
+            <section id="cameras" class="page active">
+                <h2>Manage Cameras</h2>
+                <button class="scan-cameras-btn"><i class="fas fa-search"></i> Scan for Cameras</button>
+                <div class="camera-scanning" style="display:none;">
+                    <i class="fas fa-spinner fa-spin"></i> Scanning for cameras...
+                </div>
+                <div class="camera-grid"></div>
+
+                <!-- Video Modal -->
+                <div id="video-modal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close-btn">&times;</span>
+                        <h3 id="modal-camera-name">Live Feed</h3>
+                        <div class="video-container" style="position: relative;">
+                            <video id="video" width="720" height="560" autoplay muted></video>
+                            <canvas id="overlay" width="720" height="560" style="position: absolute; top: 0; left: 0;"></canvas>
+                        </div>
+                        <button id="stop-camera-btn" class="stop-btn" style="margin-top: 10px;">STOP</button>
+                    </div>
+                </div>
+                <div style="height: 80px;"></div>
+            </section>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/camera.js"></script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>

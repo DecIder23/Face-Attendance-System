@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Subjects - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/student-main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="aurora-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>AFD System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+                <li class="active"><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>My Subjects</h1>
+                
+            </header>
+
+            <div class="content-card">
+                <!-- Semester Information -->
+            <div class="semester-info">
+                <h2>Current Semester: Spring 2025</h2>
+                <div class="semester-stats">
+                    <div class="stat">
+                        <i class="fas fa-book"></i>
+                        <span>Total Subjects: <span id="totalSubjects">0</span></span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <span>Credit Hours: <span id="creditHours">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subjects Grid -->
+            <div class="subjects-grid" id="subjectsGrid">
+                <!-- Subject cards will be rendered here by JS -->
+            </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/subjects.js"></script>
+</body>
+</html>

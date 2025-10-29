@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Schedule - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/lecture-schedule.css">
+    <link rel="stylesheet" href="css/beautiful-dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>FRA</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="mark-attendance.html"><i class="fas fa-user-check"></i> Mark Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li class="active"><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="#" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content glassy-card">
+            <header>
+                <h1>Lecture Schedule</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, <span id="teacherName">Teacher</span></span>
+                </div>
+            </header>
+
+            <!-- Schedule Controls -->
+            <!-- <div class="schedule-controls">
+                <div class="date-navigation">
+                    <button id="prevWeek" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="currentDateRange">Week of March 1, 2024</span>
+                    <button id="nextWeek" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div> -->
+
+            <!-- Schedule Section -->
+            <div class="schedule-section">
+                <h2>Weekly Schedule</h2>
+                <div class="schedule-grid">
+                    <div class="time-slots">
+                        <div class="time-header">Time</div>
+                        <div class="time-slot">8:00 AM</div>
+                        <div class="time-slot">9:30 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">12:30 PM</div>
+                        <div class="time-slot">2:00 PM</div>
+                    </div>
+                    <div class="days-grid" id="scheduleGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Legend -->
+            <div class="schedule-legend">
+                <div class="legend-item">
+                    <div class="legend-color lecture"></div>
+                    <span>Lecture</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color lab"></div>
+                    <span>Lab</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color office-hours"></div>
+                    <span>Office Hours</span>
+                </div>
+            </div>
+        <div style="height: 70px;"></div>
+</main>
+    </div>
+    <script src="../../js/auth.js"></script>
+    <script src="js/lecture-schedule.js"></script>
+<script src="js/teacher-common.js"></script>
+</body>
+</html>

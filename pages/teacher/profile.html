@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AF Attendance System</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/beautiful-dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>FRA</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="mark-attendance.html"><i class="fas fa-user-check"></i> Mark Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li class="active"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>My Profile</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, <span id="teacherName">Teacher</span></span>
+                    
+                </div>
+            </header>
+
+            <div class="profile-container glassy-schedule">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="../../assets/avatar.png" alt="Profile Picture" id="profilePicture">
+
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="headerFullName">John Doe</h2>
+                        <p id="headerDepartment">Department: Computer Science</p>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
+                <div class="profile-details">
+                    <div class="details-section">
+                        <h3>Personal Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Full Name</label>
+                                <p id="fullName">John Doe</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Father's Name</label>
+                                <p id="fatherName">Michael Doe</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>CNIC</label>
+                                <p id="cnic">12345-1234567-1</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Email</label>
+                                <p id="email">john.doe@example.com</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Phone</label>
+                                <p id="phone">+92 123 4567890</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Date of Birth</label>
+                                <p id="dob">January 15, 1980</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Gender</label>
+                                <p id="gender">Male</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Academic Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Department</label>
+                                <p id="department">Computer Science</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Contact Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Address</label>
+                                <p id="address">123 College Street, City, Country</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Emergency Contact</label>
+                                <p id="emergencyContact">+92 987 6543210</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Photos</h3>
+                        <div class="photos-grid" id="photosGrid">
+                            <!-- Photos will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div style="height: 70px;"></div>
+</main>
+    </div>
+    <script src="js/profile.js"></script>
+</body>
+</html>

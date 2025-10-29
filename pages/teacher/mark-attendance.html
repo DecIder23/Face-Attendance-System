@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/mark-attendance.css">
+    <link rel="stylesheet" href="css/beautiful-dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Face API.js for client-side face recognition -->
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>FRA</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="active"><a href="mark-attendance.html"><i class="fas fa-user-check"></i> Mark Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Mark Attendance</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, <span id="teacherName">Teacher</span></span>
+                </div>
+            </header>
+
+            <!-- Class Selection -->
+            <div class="class-selection">
+                <div class="select-group">
+                    <label for="subjectSelect">Select Subject:</label>
+                    <select id="subjectSelect" required>
+                        <option value="">Choose Subject</option>
+                        <!-- Only subject names will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="select-group">
+                    <label for="classSelect">Select Class:</label>
+                    <select id="classSelect" required>
+                        <option value="">Choose Class</option>
+                        <!-- Will be populated by JavaScript with department, batch, semester -->
+                    </select>
+                </div>
+                <div class="select-group">
+                    <label for="dateSelect">Select Date:</label>
+                    <input type="date" id="dateSelect" required>
+                </div>
+            </div>
+
+            <!-- AFD Scanner Section -->
+            <div class="scanner-section">
+                <div class="upload-group">
+                    <label for="attendanceFile">Upload Attendance Image/Video:</label>
+                    <input type="file" id="attendanceFile" accept="image/*,video/*">
+                </div>
+                <div id="uploadNotification" style="display:none;"></div>
+    <style>
+    #uploadNotification.toast {
+        display: block !important;
+        position: fixed;
+        top: 32px;
+        right: 32px;
+        z-index: 9999;
+        background: #e6f9f0;
+        color: #065f46;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 16px 28px;
+        min-width: 280px;
+        max-width: 420px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        font-size: 1.08rem;
+        text-align: left;
+        animation: fadeInDown 0.4s;
+    }
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+                <button id="uploadAttendanceBtn" class="action-btn primary" style="margin-top: 10px;">
+                    <i class="fas fa-upload"></i> Upload Photo
+                </button>
+            </div>
+
+            <!-- Attendance List -->
+            <div class="mark-attendance-container glassy-schedule">
+                <div class="list-header">
+                    <h2>Student Attendance</h2>
+                    <div class="list-actions">
+                        <button id="markAllPresent" class="action-btn">
+                            <i class="fas fa-check-double"></i> Mark All Present
+                        </button>
+                        <button id="saveAttendance" class="action-btn primary">
+                            <i class="fas fa-save"></i> Save Attendance
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTable">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        <div style="height: 70px;"></div>
+</main>
+    </div>
+    <script src="js/mark-attendance.js"></script>
+    <script src="js/teacher-profile.js"></script>
+<script src="js/teacher-common.js"></script>
+</body>
+</html>

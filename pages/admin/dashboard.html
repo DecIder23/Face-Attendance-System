@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li>
+                <a href="#" id="logoutBtn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="page active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Total Students</h3>
+                        <p id="studentCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Total Teachers</h3>
+                        <p id="teacherCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Total Classes</h3>
+                        <p id="classCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Total Subjects</h3>
+                        <p id="subjectCount">0</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>

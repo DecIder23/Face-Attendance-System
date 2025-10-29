@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Subjects - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/subject.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html" class="active"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li><a href="#" id="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Subjects Section -->
+            <section id="subjects" class="page active">
+                <h2>Manage Subjects</h2>
+                <div class="button-group">
+                    <button class="add-btn" id="addSubjectBtn">
+                        <i class="fas fa-plus"></i> Add New Subject
+                    </button>
+                    <button class="manage-btn" id="manageSubjectBtn">
+                        <i class="fas fa-cog"></i> Manage Subjects
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="subjectsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Teacher Name</th>
+                                <th>Course Name</th>
+                                <th>Class/Semester</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Subjects will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="subjectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Add New Subject</h2>
+            <form id="subjectForm">
+                <div class="input-group">
+                    <label for="teacherName">Teacher:</label>
+                    <select id="teacherName" required>
+                        <option value="">Select Teacher</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="subjectName">Subject Name:</label>
+                    <input type="text" id="subjectName" required>
+                </div>
+                <div class="input-group">
+                    <label for="classSelect">Class:</label>
+                    <select id="classSelect" required>
+                        <option value="">Select Class</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit" id="subjectFormSubmitBtn">Add Subject</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module">
+    // Ensure teachers and classes are loaded into localStorage before subject.js runs
+    const API_BASE_URL = 'http://localhost:3000/api';
+    async function fetchAndStore(endpoint, key) {
+        const token = localStorage.getItem('token');
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+        const res = await fetch(`${API_BASE_URL}/${endpoint}`, { headers });
+        if (res.ok) {
+            const data = await res.json();
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+    }
+    await fetchAndStore('teachers', 'teachers');
+    await fetchAndStore('classes', 'classes');
+
+    // Now load and initialize the subject module
+    import initializeSubjectModule from './js/subject.js';
+
+    function closeModal(modalElement) {
+        modalElement.style.display = 'none';
+    }
+    function fetchInitialData() {
+        // Re-fetch and update subjects
+        return initializeSubjectModuleInstance.fetchSubjects();
+    }
+    function populateTeacherSelect(selectId) {
+        const teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+        const selectElement = document.getElementById(selectId);
+        if (selectElement) {
+            selectElement.innerHTML = '<option value="">Select Teacher</option>';
+            teachers.forEach(teacher => {
+                const option = document.createElement('option');
+                option.value = teacher.id;
+                option.textContent = `${teacher.firstName} ${teacher.lastName}`;
+                selectElement.appendChild(option);
+            });
+        }
+    }
+    function populateClassSelect(selectId) {
+        const classes = JSON.parse(localStorage.getItem('classes')) || [];
+        const selectElement = document.getElementById(selectId);
+        if (selectElement) {
+            selectElement.innerHTML = '<option value="">Select Class</option>';
+            classes.forEach(cls => {
+                const option = document.createElement('option');
+                option.value = cls.id;
+                option.textContent = `${cls.department} - ${cls.batch} - ${cls.semester}`;
+                selectElement.appendChild(option);
+            });
+        }
+    }
+    const initializeSubjectModuleInstance = initializeSubjectModule({
+        closeModal,
+        fetchInitialData,
+        API_BASE_URL,
+        authenticatedFetch: async (url, options = {}) => {
+            const token = localStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+            const response = await fetch(url, { ...options, headers });
+            if (response.status === 401) {
+                localStorage.clear();
+                window.location.href = '../../index.html';
+                return null;
+            }
+            return response;
+        },
+        populateTeacherSelect,
+        populateClassSelect
+    });
+    </script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>

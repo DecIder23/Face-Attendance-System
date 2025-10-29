@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Schedule - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/student-main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="aurora-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>AFD System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li class="active"><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Lecture Schedule</h1>
+                
+            </header>
+
+            <div class="content-card">
+                <!-- Schedule Controls -->
+                <div class="schedule-controls">
+                <div class="date-navigation">
+                    
+                    <span id="currentDateRange">Lecture Shedule</span>
+                    
+                </div>
+            </div>
+
+            <!-- Schedule Grid -->
+            <div class="schedule-section">
+                <div class="schedule-grid">
+                    <div class="time-slots">
+                        <div class="time-header">Time</div>
+                        <div class="time-slot">8:00 AM</div>
+                        <div class="time-slot">9:30 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">12:30 PM</div>
+                        <div class="time-slot">2:00 PM</div>
+                    </div>
+                    <div class="days-grid" id="scheduleGrid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+                <!-- Schedule Legend -->
+                <div class="schedule-legend">
+                <div class="legend-item">
+                    <span class="legend-color lecture"></span>
+                    <span>Lecture</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color lab"></span>
+                    <span>Lab</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color office-hours"></span>
+                    <span>Office Hours</span>
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/lecture-schedule.js"></script>
+</body>
+</html>

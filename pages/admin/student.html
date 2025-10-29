@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/student.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html" class="active"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li><a href="#" id="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Students Section -->
+            <section id="students" class="page active">
+                <h2>Manage Students</h2>
+                <div class="button-group">
+                    <button class="add-btn" id="addStudentBtn">
+                        <i class="fas fa-plus"></i> Add New Student
+                    </button>
+                    <button class="manage-btn" id="manageStudentBtn">
+                        <i class="fas fa-cog"></i> Manage Students
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Email</th>
+                                <th>Phone No.</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Students will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Add New Student</h2>
+            <form id="studentForm">
+                <div class="input-group">
+                    <label for="studentFirstName">First Name:</label>
+                    <input type="text" id="studentFirstName" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentLastName">Last Name:</label>
+                    <input type="text" id="studentLastName" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentId">Student ID:</label>
+                    <input type="text" id="studentId" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentFatherName">Father's Name:</label>
+                    <input type="text" id="studentFatherName" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentCNIC">CNIC:</label>
+                    <input type="text" id="studentCNIC" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentEmail">Email:</label>
+                    <input type="email" id="studentEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentPassword">Password:</label>
+                    <input type="password" id="studentPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentPhone">Phone:</label>
+                    <input type="text" id="studentPhone" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentDOB">Date of Birth:</label>
+                    <input type="date" id="studentDOB" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentGender">Gender:</label>
+                    <select id="studentGender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="studentDepartment">Department:</label>
+                    <input type="text" id="studentDepartment" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentBatch">Batch:</label>
+                    <input type="text" id="studentBatch" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentSemester">Semester:</label>
+                    <select id="studentSemester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1">1st Semester</option>
+                        <option value="2">2nd Semester</option>
+                        <option value="3">3rd Semester</option>
+                        <option value="4">4th Semester</option>
+                        <option value="5">5th Semester</option>
+                        <option value="6">6th Semester</option>
+                        <option value="7">7th Semester</option>
+                        <option value="8">8th Semester</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="studentAddress">Address:</label>
+                    <input type="text" id="studentAddress" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentEmergencyContact">Emergency Contact:</label>
+                    <input type="text" id="studentEmergencyContact" required>
+                </div>
+                <div class="input-group">
+                    <label for="studentPhotos">Upload Photos (max 3):</label>
+                    <input type="file" id="studentPhotos" accept="image/*" multiple>
+                    <div id="studentPhotoPreview" class="photo-preview"></div>
+                </div>
+                <button type="submit" class="btn-submit">Add Student</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module">
+    // Initialize the student module with required dependencies
+    import initializeStudentModule from './js/student.js';
+    const API_BASE_URL = 'http://localhost:3000/api';
+    function closeModal(modalElement) {
+        modalElement.style.display = 'none';
+    }
+    function fetchInitialData() {
+        return studentModuleInstance.fetchStudents();
+    }
+    const studentModuleInstance = initializeStudentModule({
+        closeModal,
+        fetchInitialData,
+        API_BASE_URL,
+        authenticatedFetch: async (url, options = {}) => {
+            const token = localStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+            const response = await fetch(url, { ...options, headers });
+            if (response.status === 401) {
+                localStorage.clear();
+                window.location.href = '../../index.html';
+                return null;
+            }
+            return response;
+        }
+    });
+    </script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>

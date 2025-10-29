@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AFD Attendance System</title>
+    <link rel="stylesheet" href="css/student-main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="aurora-background">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="system-name">
+                <h2>AFD System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> My Attendance</a></li>
+                <li><a href="subjects.html"><i class="fas fa-book"></i> My Subjects</a></li>
+                <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i> Lecture Schedule</a></li>
+                <li class="active"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li class="logout"><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>My Profile</h1>
+                <div class="user-info">
+                    <span class="user-name">Welcome, <span id="studentName">Student</span></span>
+                    
+                </div>
+            </header>
+
+            <div class="content-card">
+                <div class="profile-container">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="../../assets/avatar.png" alt="Profile Picture" id="profilePicture">
+
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileHeaderFullName">John Doe</h2>
+                        <p id="profileHeaderDepartment">Department: Computer Science</p>
+                        <p id="batchSection">Batch 2023</p>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
+                <div class="profile-details">
+                    <div class="details-section">
+                        <h3>Personal Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Full Name</label>
+                                <p id="fullName">John Doe</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Father's Name</label>
+                                <p id="fatherName">Michael Doe</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>CNIC</label>
+                                <p id="cnic">12345-1234567-1</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Email</label>
+                                <p id="email">john.doe@example.com</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Phone</label>
+                                <p id="phone">+92 123 4567890</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Date of Birth</label>
+                                <p id="dob">January 15, 2000</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Gender</label>
+                                <p id="gender">Male</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Academic Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Department</label>
+                                <p id="department">Computer Science</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Batch</label>
+                                <p id="batch">2023</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Semester</label>
+                                <p id="semester">Spring 2023</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Contact Information</h3>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>Address</label>
+                                <p id="address">123 College Street, City, Country</p>
+                            </div>
+                            <div class="detail-item">
+                                <label>Emergency Contact</label>
+                                <p id="emergencyContact">+92 987 6543210</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Photos</h3>
+                        <div class="photos-grid" id="photosGrid">
+                            <!-- Photos will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/profile.js"></script>
+</body>
+</html>

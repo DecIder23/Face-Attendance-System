@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teachers - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/teacher.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html" class="active"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li><a href="#" id="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Teachers Section -->
+            <section id="teachers" class="page active">
+                <h2>Manage Teachers</h2>
+                <div class="button-group">
+                    <button class="add-btn" id="addTeacherBtn">
+                        <i class="fas fa-plus"></i> Add New Teacher
+                    </button>
+                    <button class="manage-btn" id="manageTeacherBtn">
+                        <i class="fas fa-cog"></i> Manage Teachers
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="teachersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Email</th>
+                                <th>Phone No.</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Teachers will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="teacherModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Add New Teacher</h2>
+            <form id="teacherForm">
+                <div class="input-group">
+                    <label for="teacherFirstName">First Name:</label>
+                    <input type="text" id="teacherFirstName">
+                </div>
+                <div class="input-group">
+                    <label for="teacherLastName">Last Name:</label>
+                    <input type="text" id="teacherLastName">
+                </div>
+                <div class="input-group">
+                    <label for="fatherName">Father's Name:</label>
+                    <input type="text" id="fatherName">
+                </div>
+                <div class="input-group">
+                    <label for="teacherPassword">Password:</label>
+                    <input type="password" id="teacherPassword">
+                </div>
+                <div class="input-group">
+                    <label for="teacherCNIC">CNIC:</label>
+                    <input type="text" id="teacherCNIC">
+                </div>
+                <div class="input-group">
+                    <label for="teacherEmail">Email:</label>
+                    <input type="email" id="teacherEmail">
+                </div>
+                <div class="input-group">
+                    <label for="teacherPhone">Phone:</label>
+                    <input type="text" id="teacherPhone">
+                </div>
+                <div class="input-group">
+                    <label for="teacherDOB">Date of Birth:</label>
+                    <input type="date" id="teacherDOB">
+                </div>
+                <div class="input-group">
+                    <label for="teacherGender">Gender:</label>
+                    <select id="teacherGender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="teacherDepartment">Department:</label>
+                    <input type="text" id="teacherDepartment">
+                </div>
+                <div class="input-group">
+                    <label for="teacherAddress">Address:</label>
+                    <input type="text" id="teacherAddress">
+                </div>
+                <div class="input-group">
+                    <label for="emergencyContact">Emergency Contact:</label>
+                    <input type="text" id="emergencyContact">
+                </div>
+                <div class="input-group">
+                    <label for="teacherPhotos">Upload Photos (max 3):</label>
+                    <input type="file" id="teacherPhotos" accept="image/*" multiple>
+                    <div id="photoPreview" class="photo-preview"></div>
+                </div>
+                <button type="submit" class="btn-submit" id="teacherFormSubmitBtn">Add Teacher</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module">
+    // Initialize the teacher module with required dependencies
+    import initializeTeacherModule from './js/teacher.js';
+    const API_BASE_URL = 'http://localhost:3000/api';
+    function closeModal(modalElement) {
+        modalElement.style.display = 'none';
+    }
+    function fetchInitialData() {
+        return teacherModuleInstance.fetchTeachers();
+    }
+    const teacherModuleInstance = initializeTeacherModule({
+        closeModal,
+        fetchInitialData,
+        API_BASE_URL,
+        authenticatedFetch: async (url, options = {}) => {
+            const token = localStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+            const response = await fetch(url, { ...options, headers });
+            if (response.status === 401) {
+                localStorage.clear();
+                window.location.href = '../../index.html';
+                return null;
+            }
+            return response;
+        }
+    });
+    </script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>

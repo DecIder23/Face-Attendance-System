@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Schedule - AFD Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/lecture-schedule.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <canvas id="bg-animation"></canvas>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+            <li><a href="class.html"><i class="fas fa-graduation-cap"></i><span>Classes</span></a></li>
+            <li><a href="subject.html"><i class="fas fa-book"></i><span>Subjects</span></a></li>
+            <li><a href="teacher.html"><i class="fas fa-chalkboard-teacher"></i><span>Teachers</span></a></li>
+            <li><a href="student.html"><i class="fas fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="lecture-schedule.html" class="active"><i class="fas fa-calendar-alt"></i><span>Lecture Schedule</span></a></li>
+            <li><a href="camera.html"><i class="fas fa-video"></i><span>Cameras</span></a></li>
+            <li><a href="#" id="logoutBtn" onclick="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="user-info beautiful-welcome">
+                <i class="fas fa-user-shield"></i>
+                <span>Welcome, <span class="admin-highlight">Admin</span></span>
+            </div>
+        </header>
+        <div class="content-area">
+            <!-- Lecture Schedule Section -->
+            <section id="lecture-schedule" class="page active">
+                <h2>Lecture Schedule</h2>
+                <div class="schedule-actions">
+                    <button class="action-btn manage-btn">
+                        <i class="fas fa-cog"></i> Manage Schedule
+                    </button>
+                    <button id="uploadCurrentScheduleBtn" class="action-btn upload-btn" type="button">
+                        <i class="fas fa-upload"></i> Upload Schedule
+                    </button>
+    <script>
+    // Always show 'Schedule uploaded.' popup for Upload Schedule button
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadBtn = document.getElementById('uploadCurrentScheduleBtn');
+        if (uploadBtn) {
+            uploadBtn.addEventListener('click', function() {
+                alert('Schedule uploaded.');
+            });
+        }
+    });
+    </script>
+    <!-- Removed duplicate popup handler for Upload Schedule button -->
+                    <select id="classFilter" style="margin-left:20px;">
+                        <option value="">All Classes</option>
+                    </select>
+                </div>
+
+                <div class="weekly-timetable">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+<tr>
+    <td>08:00 - 09:00</td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">PHY102</div><div class="teacher-name">Ms. S. Ali</div><div class="section-room">Physics | Batch 2024 | R105</div></div></td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">CHEM110</div><div class="teacher-name">Dr. L. Patel</div><div class="section-room">Chemistry | Batch 2025 | Lab 2</div></div></td>
+    <td></td>
+</tr>
+<tr>
+    <td>09:00 - 10:00</td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">PHY102</div><div class="teacher-name">Ms. S. Ali</div><div class="section-room">Physics | Batch 2024 | R105</div></div></td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">CS105</div><div class="teacher-name">Prof. R. Kumar</div><div class="section-room">CS | Batch 2024 | R202</div></div></td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">CHEM110</div><div class="teacher-name">Dr. L. Patel</div><div class="section-room">Chemistry | Batch 2025 | Lab 2</div></div></td>
+</tr>
+<tr>
+    <td>10:00 - 11:00</td>
+    <td></td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">PHY102</div><div class="teacher-name">Ms. S. Ali</div><div class="section-room">Physics | Batch 2024 | R105</div></div></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">MATH101</div><div class="teacher-name">Dr. A. Khan</div><div class="section-room">Math | Batch 2025 | R201</div></div></td>
+    <td></td>
+</tr>
+<tr>
+    <td>11:00 - 12:00</td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">CHEM110</div><div class="teacher-name">Dr. L. Patel</div><div class="section-room">Chemistry | Batch 2025 | Lab 2</div></div></td>
+    <td></td>
+    <td></td>
+    <td><div class="class-slot">
+    <button class="slot-btn edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+    <button class="slot-btn delete-btn" title="Delete" onclick="this.closest('.class-slot').innerHTML = '';"><i class="fas fa-trash"></i></button><div class="subject-code">ENG201</div><div class="teacher-name">Mr. J. Smith</div><div class="section-room">English | Batch 2023 | R301</div></div></td>
+    <td></td>
+</tr>
+</tbody>
+
+                    </table>
+                    <div class="table-bottom-space"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Schedule Slot Modal -->
+    <div id="scheduleSlotModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Schedule Slot</h2>
+            <form id="scheduleSlotForm">
+                <div class="input-group">
+                    <label><strong>Slot ID:</strong> <span id="scheduleSlotIdDisplay"></span></label>
+                    <input type="hidden" id="scheduleSlotId" name="slotId">
+                    <input type="hidden" id="scheduleSlotDay" name="day">
+                    <input type="hidden" id="scheduleSlotTime" name="time"> <!-- Added hidden input for time -->
+                </div>
+                <div class="input-group">
+                    <label for="scheduleSlotTeacher">Teacher:</label>
+                    <select id="scheduleSlotTeacher" name="teacherId" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="scheduleSlotSubject">Subject:</label>
+                    <select id="scheduleSlotSubject" name="subjectId" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="scheduleSlotClass">Class:</label>
+                    <select id="scheduleSlotClass" name="classId" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="scheduleSlotRoom">Room:</label>
+                    <input type="text" id="scheduleSlotRoom" name="room" required>
+                </div>
+                <button type="submit" class="btn-submit">Save Slot</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/lecture-schedule.js"></script>
+    <script>
+    // Fallback: Attach delete and edit listeners for static HTML slots
+    document.addEventListener('DOMContentLoaded', function() {
+        let lastEditedSlot = null;
+        function fetchAndStoreTeachers(callback) {
+            const token = localStorage.getItem('token');
+            fetch('http://localhost:3000/api/teachers', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    localStorage.setItem('teachers', JSON.stringify(data));
+                    if (callback) callback(data);
+                } else {
+                    if (callback) callback([]);
+                }
+            })
+            .catch(() => { if (callback) callback([]); });
+        }
+        function fetchAndStoreSubjects(callback) {
+            const token = localStorage.getItem('token');
+            fetch('http://localhost:3000/api/subjects', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    localStorage.setItem('subjects', JSON.stringify(data));
+                    if (callback) callback(data);
+                } else {
+                    if (callback) callback([]);
+                }
+            })
+            .catch(() => { if (callback) callback([]); });
+        }
+        function populateTeacherSelect(selectElement, selectedName) {
+            fetchAndStoreTeachers(function(teachers) {
+                selectElement.innerHTML = '<option value="">Select Teacher</option>';
+                teachers.forEach(teacher => {
+                    const opt = document.createElement('option');
+                    opt.value = teacher.id;
+                    opt.textContent = teacher.firstName + ' ' + teacher.lastName;
+                    if (opt.textContent === selectedName) opt.selected = true;
+                    selectElement.appendChild(opt);
+                });
+            });
+        }
+        function populateSubjectSelect(selectElement, selectedName) {
+            fetchAndStoreSubjects(function(subjects) {
+                selectElement.innerHTML = '<option value="">Select Subject</option>';
+                subjects.forEach(subj => {
+                    const opt = document.createElement('option');
+                    opt.value = subj.id;
+                    opt.textContent = subj.name;
+                    if (opt.textContent === selectedName) opt.selected = true;
+                    selectElement.appendChild(opt);
+                });
+            });
+        }
+        function populateClassSelect(selectElement, selectedName) {
+            const classes = JSON.parse(localStorage.getItem('classes')) || [];
+            selectElement.innerHTML = '<option value="">Select Class</option>';
+            classes.forEach(cls => {
+                const opt = document.createElement('option');
+                opt.value = cls.id;
+                opt.textContent = cls.name || `${cls.department || ''} - ${cls.batch || ''} - ${cls.semester || ''} - ${cls.section || ''}`.replace(/ - +/g, ' - ').replace(/^ - | - $/g, '');
+                if (opt.textContent === selectedName) opt.selected = true;
+                selectElement.appendChild(opt);
+            });
+        }
+        document.querySelectorAll('.schedule-slot').forEach(slotCell => {
+            // If the slot is empty (no .class-slot), add an empty slot with edit button
+            if (!slotCell.querySelector('.class-slot')) {
+                slotCell.innerHTML = `<div class="class-slot empty">Add Slot <button class="edit-slot" title="Add Slot"><i class="fas fa-plus"></i></button></div>`;
+            }
+        });
+        // Attach listeners to all edit and delete buttons (including empty slots)
+        document.querySelectorAll('.delete-slot').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const classSlot = btn.closest('.class-slot.lecture');
+                if (classSlot) {
+                    classSlot.classList.remove('lecture');
+                    classSlot.innerHTML = 'Add Slot <button class="edit-slot" title="Add Slot"><i class="fas fa-plus"></i></button>';
+                    classSlot.classList.add('empty');
+                    // Re-attach edit listener to the new add button
+                    const addBtn = classSlot.querySelector('.edit-slot');
+                    if (addBtn) {
+                        addBtn.addEventListener('click', handleEditSlot);
+                    }
+                }
+            });
+        });
+        // Helper to safely get the day of week from the table header
+        function getDayOfWeek(slotCell) {
+            const td = slotCell.closest('td.schedule-slot');
+            if (!td) return '';
+            const tr = td.parentElement;
+            if (!tr) return '';
+            const tds = Array.from(tr.children);
+            const colIndex = tds.indexOf(td);
+            const table = td.closest('table');
+            if (!table) return '';
+            const headerRow = table.querySelector('thead tr');
+            if (!headerRow) return '';
+            const ths = headerRow.querySelectorAll('th');
+            if (colIndex > 0 && ths[colIndex]) {
+                return ths[colIndex].textContent.trim();
+            }
+            return '';
+        }
+        function handleEditSlot(e) {
+            e.preventDefault();
+            const classSlot = this.closest('.class-slot');
+            lastEditedSlot = classSlot;
+            let subjectName = '', teacherName = '', section = '', room = '';
+            if (classSlot.classList.contains('lecture')) {
+                subjectName = classSlot.querySelector('.subject-name')?.textContent || '';
+                teacherName = classSlot.querySelector('.teacher-name')?.textContent || '';
+                const sectionRoom = classSlot.querySelector('.section-room')?.textContent || '';
+                [section, room] = sectionRoom.split(' - ');
+            }
+            // Get the time from the parent row's first cell
+            let time = '';
+            let day = '';
+            const slotCell = classSlot.closest('td.schedule-slot');
+            if (slotCell) {
+                const row = slotCell.parentElement;
+                if (row && row.querySelector('.time-slot')) {
+                    time = row.querySelector('.time-slot').textContent.trim();
+                }
+                day = getDayOfWeek(slotCell);
+            }
+            document.getElementById('scheduleSlotTime').value = time;
+            document.getElementById('scheduleSlotDay').value = day;
+            // Show modal
+            const modal = document.getElementById('scheduleSlotModal');
+            const teacherSelect = document.getElementById('scheduleSlotTeacher');
+            const subjectSelect = document.getElementById('scheduleSlotSubject');
+            const classSelect = document.getElementById('scheduleSlotClass');
+            populateTeacherSelect(teacherSelect, teacherName);
+            populateSubjectSelect(subjectSelect, subjectName);
+            populateClassSelect(classSelect, section); // Still from localStorage
+            document.getElementById('scheduleSlotRoom').value = room ? room.trim() : '';
+            modal.style.display = 'block';
+        }
+        document.querySelectorAll('.schedule-slot').forEach(slotCell => {
+            // If the slot is empty (no .class-slot), add an empty slot with edit button
+            if (!slotCell.querySelector('.class-slot')) {
+                slotCell.innerHTML = `<div class="class-slot empty">Add Slot <button class="edit-slot" title="Add Slot"><i class="fas fa-plus"></i></button></div>`;
+            }
+        });
+        // Attach listeners to all edit and delete buttons (including empty slots)
+        document.querySelectorAll('.delete-slot').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const classSlot = btn.closest('.class-slot.lecture');
+                if (classSlot) {
+                    classSlot.classList.remove('lecture');
+                    classSlot.innerHTML = 'Add Slot <button class="edit-slot" title="Add Slot"><i class="fas fa-plus"></i></button>';
+                    classSlot.classList.add('empty');
+                    // Re-attach edit listener to the new add button
+                    const addBtn = classSlot.querySelector('.edit-slot');
+                    if (addBtn) {
+                        addBtn.addEventListener('click', handleEditSlot);
+                    }
+                }
+            });
+        });
+        function handleEditSlot(e) {
+            e.preventDefault();
+            const classSlot = this.closest('.class-slot');
+            lastEditedSlot = classSlot;
+            let subjectName = '', teacherName = '', section = '', room = '';
+            if (classSlot.classList.contains('lecture')) {
+                subjectName = classSlot.querySelector('.subject-name')?.textContent || '';
+                teacherName = classSlot.querySelector('.teacher-name')?.textContent || '';
+                const sectionRoom = classSlot.querySelector('.section-room')?.textContent || '';
+                [section, room] = sectionRoom.split(' - ');
+            }
+            // Get the time from the parent row's first cell
+            let time = '';
+            let day = '';
+            const slotCell = classSlot.closest('td.schedule-slot');
+            if (slotCell) {
+                const row = slotCell.parentElement;
+                if (row && row.querySelector('.time-slot')) {
+                    time = row.querySelector('.time-slot').textContent.trim();
+                }
+                day = getDayOfWeek(slotCell);
+            }
+            document.getElementById('scheduleSlotTime').value = time;
+            document.getElementById('scheduleSlotDay').value = day;
+            // Show modal
+            const modal = document.getElementById('scheduleSlotModal');
+            const teacherSelect = document.getElementById('scheduleSlotTeacher');
+            const subjectSelect = document.getElementById('scheduleSlotSubject');
+            const classSelect = document.getElementById('scheduleSlotClass');
+            populateTeacherSelect(teacherSelect, teacherName);
+            populateSubjectSelect(subjectSelect, subjectName);
+            populateClassSelect(classSelect, section); // Still from localStorage
+            document.getElementById('scheduleSlotRoom').value = room ? room.trim() : '';
+            modal.style.display = 'block';
+        }
+        document.querySelectorAll('.edit-slot').forEach(btn => {
+            btn.addEventListener('click', handleEditSlot);
+        });
+        // Handle form submission for static slots
+        document.getElementById('scheduleSlotForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!lastEditedSlot) return;
+            const teacherSelect = document.getElementById('scheduleSlotTeacher');
+            const subjectSelect = document.getElementById('scheduleSlotSubject');
+            const classSelect = document.getElementById('scheduleSlotClass');
+            const roomInput = document.getElementById('scheduleSlotRoom');
+            const timeInput = document.getElementById('scheduleSlotTime');
+            const dayInput = document.getElementById('scheduleSlotDay');
+            // Defensive: check if elements exist
+            const teacherName = teacherSelect ? teacherSelect.options[teacherSelect.selectedIndex].text : '';
+            const subjectName = subjectSelect ? subjectSelect.options[subjectSelect.selectedIndex].text : '';
+            const className = classSelect ? classSelect.options[classSelect.selectedIndex].text : '';
+            const room = roomInput ? roomInput.value : '';
+            const time = timeInput ? timeInput.value : '';
+            const day = dayInput ? dayInput.value : '';
+            lastEditedSlot.innerHTML = `
+                <div class="subject-name">${subjectName}</div>
+                <div class="teacher-name">${teacherName}</div>
+                <div class="section-room">${className} - ${room}</div>
+                <div class="slot-time" style="display:none;">${time}</div>
+                <div class="slot-day" style="display:none;">${day}</div>
+                <div class="slot-actions">
+                    <button class="edit-slot"><i class="fas fa-edit"></i></button>
+                    <button class="delete-slot"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            lastEditedSlot.classList.add('lecture');
+            lastEditedSlot.classList.remove('empty');
+            document.getElementById('scheduleSlotModal').style.display = 'none';
+            // Re-attach listeners to new buttons
+            lastEditedSlot.querySelector('.edit-slot').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.edit-slot').forEach(btn => btn.blur());
+                const classSlot = this.closest('.class-slot.lecture');
+                if (!classSlot) return;
+                const subjectName = classSlot.querySelector('.subject-name')?.textContent || '';
+                const teacherName = classSlot.querySelector('.teacher-name')?.textContent || '';
+                const sectionRoom = classSlot.querySelector('.section-room')?.textContent || '';
+                const [section, room] = sectionRoom.split(' - ');
+                // Get the time and day from the parent row's first cell and header
+                let time = '';
+                let day = '';
+                const slotCell = classSlot.closest('td.schedule-slot');
+                if (slotCell) {
+                    const row = slotCell.parentElement;
+                    if (row && row.querySelector('.time-slot')) {
+                        time = row.querySelector('.time-slot').textContent.trim();
+                    }
+                    day = getDayOfWeek(slotCell);
+                }
+                document.getElementById('scheduleSlotTime').value = time;
+                document.getElementById('scheduleSlotDay').value = day;
+                const modal = document.getElementById('scheduleSlotModal');
+                const teacherSelect = document.getElementById('scheduleSlotTeacher');
+                const subjectSelect = document.getElementById('scheduleSlotSubject');
+                const classSelect = document.getElementById('scheduleSlotClass');
+                populateTeacherSelect(teacherSelect, teacherName);
+                populateClassSelect(classSelect, section);
+                populateSubjectSelect(subjectSelect, subjectName);
+                document.getElementById('scheduleSlotRoom').value = room ? room.trim() : '';
+                modal.style.display = 'block';
+            });
+            lastEditedSlot.querySelector('.delete-slot').addEventListener('click', function(e) {
+                e.preventDefault();
+                const classSlot = this.closest('.class-slot.lecture');
+                if (classSlot) {
+                    classSlot.classList.remove('lecture');
+                    classSlot.innerHTML = 'Add Slot <button class="edit-slot" title="Add Slot"><i class="fas fa-plus"></i></button>';
+                    classSlot.classList.add('empty');
+                }
+            });
+        });
+        // Also update renderEmptySlot to use new fetchers
+        function renderEmptySlot(slotDiv) {
+            slotDiv.classList.add('empty');
+            slotDiv.classList.remove('lecture');
+            slotDiv.innerHTML = `Add Slot <button class="edit-slot"><i class="fas fa-edit"></i></button>`;
+            // Attach edit listener for add
+            slotDiv.querySelector('.edit-slot').addEventListener('click', function(e) {
+                e.preventDefault();
+                lastEditedSlot = slotDiv;
+                // Open modal with empty fields
+                const modal = document.getElementById('scheduleSlotModal');
+                const teacherSelect = document.getElementById('scheduleSlotTeacher');
+                const subjectSelect = document.getElementById('scheduleSlotSubject');
+                const classSelect = document.getElementById('scheduleSlotClass');
+                populateTeacherSelect(teacherSelect, '');
+                populateSubjectSelect(subjectSelect, '');
+                populateClassSelect(classSelect, '');
+                document.getElementById('scheduleSlotRoom').value = '';
+                modal.style.display = 'block';
+            });
+        }
+
+        // On DOMContentLoaded, update all empty slots
+        document.querySelectorAll('.class-slot.empty, .schedule-slot').forEach(slotCell => {
+            // If slotCell is a .class-slot.empty, or a .schedule-slot with no .class-slot child
+            if (slotCell.classList.contains('class-slot') && slotCell.classList.contains('empty')) {
+                renderEmptySlot(slotCell);
+            } else if (slotCell.classList.contains('schedule-slot') && !slotCell.querySelector('.class-slot')) {
+                // Create a new .class-slot.empty div
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'class-slot empty';
+                renderEmptySlot(emptyDiv);
+                slotCell.appendChild(emptyDiv);
+            } else if (slotCell.classList.contains('class-slot') && slotCell.textContent.trim() === 'Add Slot') {
+                renderEmptySlot(slotCell);
+            }
+        });
+        // Add close button logic for modal
+        document.querySelector('#scheduleSlotModal .close-button').addEventListener('click', function() {
+            document.getElementById('scheduleSlotModal').style.display = 'none';
+        });
+    });
+    </script>
+    <script type="module">
+import initializeLectureScheduleModule from './js/lecture-schedule.js';
+
+const API_BASE_URL = 'http://localhost:3000/api';
+
+// Helper for authenticated fetch (copied from dashboard.js)
+async function authenticatedFetch(url, options = {}) {
+    const token = localStorage.getItem('token');
+    const headers = {
+        'Content-Type': 'application/json',
+        ...options.headers
+    };
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    const response = await fetch(url, { ...options, headers });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+}
+
+// Initialize lecture schedule module
+initializeLectureScheduleModule({
+    API_BASE_URL,
+    closeModal: modal => modal.style.display = 'none',
+    fetchInitialData: () => {},
+    authenticatedFetch
+});
+    </script>
+    <script src="../../js/bg-animation.js"></script>
+</body>
+</html>
